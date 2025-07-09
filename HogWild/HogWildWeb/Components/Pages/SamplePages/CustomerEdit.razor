@@ -1,0 +1,228 @@
+﻿@page "/SamplePages/CustomerEdit/{CustomerID:int}"
+<PageTitle>Customer Edit</PageTitle>
+
+@if (CustomerID == 0)
+{
+    <MudText Typo="Typo.h3">New Customer</MudText>
+}
+else
+{
+    <MudText Typo="Typo.h3">Edit Customer: @customer.FirstName @customer.LastName</MudText>
+}
+
+@if (hasError)
+{
+    <MudAlert Elevation="2"
+              Severity="Severity.Error"
+              Dense="true">
+        <MudText Typo="Typo.h6">@errorMessage</MudText>
+        @foreach (var error in errorDetails)
+        {
+            <MudText Typo="Typo.body2">@error</MudText>
+        }
+    </MudAlert>
+}
+@if (hasFeedback)
+{
+    <MudAlert Elevation="2"
+              Severity="Severity.Info"
+              Dense="true">
+        <MudText Typo="Typo.body2">@feedbackMessage</MudText>
+    </MudAlert>
+}
+
+<MudForm @ref="customerForm" @bind-IsValid="isFormValid" @bind-IsTouched="hasDataChanged">
+    <MudGrid>
+        <!-- Column One -->
+        <MudItem xs="6">
+            <MudTextField Label="First Name"
+                          @bind-Value="customer.FirstName"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="First Name is required."
+                          MaxLength="200"
+                          Immediate="true" />
+            <MudTextField Label="Last Name"
+                          @bind-Value="customer.LastName"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Last Name is required."
+                          MaxLength="50"
+                          Immediate="true" />
+            <MudTextField Label="Address 1"
+                          @bind-Value="customer.Address1"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Address 1 is required."
+                          MaxLength="50"
+                          Immediate="true" />
+            <MudTextField Label="Address 2"
+                          @bind-Value="customer.Address2"
+                          Variant="Variant.Outlined"
+                          MaxLength="50"
+                          Immediate="true" />
+            <MudTextField Label="City"
+                          @bind-Value="customer.City"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="City is required."
+                          MaxLength="50"
+                          Immediate="true" />
+            <MudSelect @bind-Value="customer.ProvStateID"
+                       Variant="Variant.Outlined"
+                       Label="Province"
+                       Required
+                       RequiredError="You must select a Province.">
+                @foreach (var item in provinces)
+                {
+                    <MudSelectItem T="int" Value="@item.LookupID">@item.Name</MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+        <!-- Column Two -->
+        <MudItem xs="6">
+
+            <MudSelect @bind-Value="customer.CountryID"
+                       Variant="Variant.Outlined"
+                       Label="Country"
+                       Required
+                       RequiredError="You must select a Country.">
+                @foreach (var item in countries)
+                {
+                    <MudSelectItem T="int" Value="@item.LookupID">@item.Name</MudSelectItem>
+                }
+            </MudSelect>
+            <MudTextField Label="Postal Code"
+                          @bind-Value="customer.PostalCode"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Postal Code is required."
+                          MaxLength="20"
+                          Immediate="true" />
+            <MudTextField Label="Phone Number"
+                          @bind-Value="customer.Phone"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Phone Number is required."
+                          MaxLength="20"
+                          Format="###-###-####"
+                          Immediate="true" />
+            <MudTextField Label="Email"
+                          @bind-Value="customer.Email"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Email is required."
+                          MaxLength="250"
+                          InputType="InputType.Email"
+                          Immediate="true" />
+            <MudSelect @bind-Value="customer.StatusID"
+                       Variant="Variant.Outlined"
+                       Label="Customer Status"
+                       Required
+                       RequiredError="You must select a Customer Status.">
+                @foreach (var item in statusLookup)
+                {
+                    <MudSelectItem T="int" Value="@item.LookupID">@item.Name</MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="12">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       OnClick="Save"
+                       Disabled="@(!isFormValid || !hasDataChanged)">
+                Save
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Error"
+                       OnClick="Cancel"
+                       Class="ml-4">
+                @closeButtonText
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Success"
+                       OnClick="NewInvoice"
+                       Class="ml-4">
+                New Invoice
+            </MudButton>
+        </MudItem>
+        <MudItem xs="12" Class="mt-4">
+            <MudDataGrid Items="invoices"
+                         Striped="true"
+                         FixedFooter="true"
+                         FixedHeader="true"
+                         Height="65vh">
+                <Columns>
+                    <TemplateColumn>
+                        <HeaderTemplate>
+                            Actions
+                        </HeaderTemplate>
+                        <CellTemplate>
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Primary"
+                                       OnClick="() => EditInvoice(context.Item.InvoiceID)">
+                                Edit Invoice
+                            </MudButton>
+                        </CellTemplate>
+                    </TemplateColumn>
+                    <PropertyColumn Property="x => x.InvoiceID" Title="Invoice ID" />
+                    <PropertyColumn Property="x => x.InvoiceDate" Title="InvoiceDate" />
+                    <PropertyColumn Property="@(x => x.Total.ToString("C2"))" Title="Total" />
+                </Columns>
+                <NoRecordsContent>
+                    <MudText Typo="Typo.h6">No Invoices for the Customer.</MudText>
+                </NoRecordsContent>
+                <PagerContent>
+                    <MudDataGridPager />
+                </PagerContent>
+            </MudDataGrid>
+        </MudItem>
+    </MudGrid>
+</MudForm>
+@* 
+================================================================================
+MudBlazor Components Used in This Page
+================================================================================
+
+1. MudText:
+   - Displays page titles dynamically based on whether a new customer is being added or an existing customer is being edited.
+
+2. MudAlert:
+   - Shows error and feedback messages.
+   - Uses different severity levels (Error, Info) for visual clarity.
+   - Displays error details in a list format.
+
+3. MudForm:
+   - Wraps the entire customer form to enable form validation and submission control.
+   - Uses @ref binding to track form state and bind validation status.
+
+4. MudGrid:
+   - Organizes input fields into a responsive two-column layout.
+   - MudItem elements are used to define columns and row spans.
+
+5. MudTextField:
+   - Used for various customer fields (First Name, Last Name, Address, City, etc.).
+   - Includes validation (RequiredError) and formatting options (e.g., phone number masking).
+   - Immediate mode ensures real-time validation.
+
+6. MudSelect:
+   - Used for selecting Province, Country, and Customer Status.
+   - Populates dropdown options dynamically from lookup lists.
+   - Includes required validation.
+
+7. MudButton:
+   - Controls form actions such as Save, Cancel, and New Invoice.
+   - Uses color variations to indicate primary, error, and success actions.
+   - Disables the Save button if the form is invalid.
+
+8. MudDataGrid:
+   - Displays the list of invoices associated with the customer.
+   - Features striped rows, fixed header/footer, and a scrollable height.
+   - Columns include:
+     - TemplateColumn for the **Edit Invoice** button.
+     - PropertyColumns for invoice details (ID, Date, Total).
+   - NoRecordsContent provides feedback when no invoices are available.
+   - Includes MudDataGridPager for pagination.
+
+================================================================================
+*@
