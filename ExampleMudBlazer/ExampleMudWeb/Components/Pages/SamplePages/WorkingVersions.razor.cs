@@ -10,7 +10,7 @@ namespace ExampleMudWeb.Components.Pages.SamplePages
     {
         #region Properties
         [Inject]
-        protected WorkingVersionService workingVersionService { get; set; }
+        protected WorkingVersionService workingVersionService { get; set; } = default!;
 
         #endregion
 
