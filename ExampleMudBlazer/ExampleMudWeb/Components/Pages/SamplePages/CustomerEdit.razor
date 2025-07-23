@@ -1,0 +1,69 @@
+﻿@page "/SamplePages/CustomerEdit/{CustomerID:int}"
+
+<PageTitle>Customer Edit</PageTitle>
+@if (CustomerID == 0)
+{
+    <MudText Typo="Typo.h3">New Customer</MudText>
+}
+else
+{
+    <MudText Typo="Typo.h3">Edit Customer: @customer.FirstName @customer.LastName</MudText>
+}
+
+@if (hasFeedback)
+{
+    <MudAlert Elevation="2" ></MudAlert>
+}
+
+<MudForm @ref="customerForm" @bind-IsValid="isFormValid" @bind-isTouched="hasDataChanged">
+    <MudGrid>
+        <MudItem xs="6">
+            <MudTextField Label="First Name" 
+                          @bind-Value=customer.FirstName
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="First Name is required."
+                          MaxLength="20"
+                          Immediate="true"/>
+            <MudTextField Label="Last Name" 
+                          @bind-Value=customer.LastName
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Last Name is required."
+                          MaxLength="20"
+                          Immediate="true"/>
+            <MudTextField Label="Address 1" 
+                          @bind-Value=customer.Address1
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Address 1 is required."
+                          MaxLength="50"
+                          Immediate="true"/>
+            <MudTextField Label="Address 2" 
+                          @bind-Value=customer.Address2
+                          Variant="Variant.Outlined"
+                          MaxLength="50"
+                          Immediate="true"/>
+            <MudTextField Label="City" 
+                          @bind-Value=customer.City
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="City is required."
+                          MaxLength="20"
+                          Immediate="true"/>
+            <MudSelect Label="Province"
+                          @bind-Value=customer.ProvStateID
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="You must select a province.">
+                            @foreach(var item in provinces)
+                            {
+                                <MudSelectItem T="int" Value="@item.LookupID">@item.Name</MudSelectItem>
+                            }
+            </MudSelect>
+        </MudItem>
+        <MudItem sx="6">
+
+        </MudItem>
+    </MudGrid>
+</MudForm>

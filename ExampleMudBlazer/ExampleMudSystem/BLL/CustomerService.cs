@@ -1,4 +1,7 @@
-﻿using ExampleMudSystem.DAL;
+﻿#nullable disable
+using BYSResults;
+using ExampleMudSystem.DAL;
+using ExampleMudSystem.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +18,10 @@ namespace ExampleMudSystem.BLL
             _context = context;
         }
 
+        public Result<CustomerEditView> GetCustomer(int id)
+        {
+            return null;
+        }
 
     }
 }

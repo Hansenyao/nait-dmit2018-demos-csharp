@@ -18,6 +18,20 @@ public static class ExampleMudExtersion
 
             return new WorkingVersionService(context);
         });
+
+        services.AddTransient<CustomerService>((ServiceProvider) =>
+        {
+            var context = ServiceProvider.GetService<OLTPDMIT2018Context>();
+
+            return new CustomerService(context);
+        });
+
+        services.AddTransient<CategoryLookupService>((ServiceProvider) =>
+        {
+            var context = ServiceProvider.GetService<OLTPDMIT2018Context>();
+
+            return new CategoryLookupService(context);
+        });
     }
 
 }
