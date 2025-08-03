@@ -1,0 +1,2 @@
+C:\Users\SHANEK\source\repos\ExampleMudBlazorSolution\ExampleMudWebApp\wwwroot\favicon.ico
+wwwroot\favicon.ico

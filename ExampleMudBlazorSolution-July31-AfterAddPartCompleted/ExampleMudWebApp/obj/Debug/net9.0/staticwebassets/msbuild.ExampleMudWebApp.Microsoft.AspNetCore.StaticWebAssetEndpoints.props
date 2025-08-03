@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/ExampleMudWebApp/ExampleMudWebApp.9hzdi0ttxs.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\ExampleMudWebApp.9hzdi0ttxs.bundle.scp.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"9hzdi0ttxs"},{"Name":"integrity","Value":"sha256-3VbapUXX8aR2j3b8PyyztM0AzmGc67LeVHn0NHdR4fM="},{"Name":"label","Value":"_content/ExampleMudWebApp/ExampleMudWebApp.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"92"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00223VbapUXX8aR2j3b8PyyztM0AzmGc67LeVHn0NHdR4fM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Jul 2025 03:14:31 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ExampleMudWebApp/ExampleMudWebApp.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\ExampleMudWebApp.9hzdi0ttxs.bundle.scp.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-3VbapUXX8aR2j3b8PyyztM0AzmGc67LeVHn0NHdR4fM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"92"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00223VbapUXX8aR2j3b8PyyztM0AzmGc67LeVHn0NHdR4fM=\u0022"},{"Name":"Last-Modified","Value":"Wed, 23 Jul 2025 03:14:31 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ExampleMudWebApp/favicon.2jeq8efc6q.ico">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2jeq8efc6q"},{"Name":"integrity","Value":"sha256-8kNQh\u002BLErZHx3sMz237BHWFasAGQ88EWakJrWWYOxTA="},{"Name":"label","Value":"_content/ExampleMudWebApp/favicon.ico"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15086"},{"Name":"Content-Type","Value":"image/x-icon"},{"Name":"ETag","Value":"\u00228kNQh\u002BLErZHx3sMz237BHWFasAGQ88EWakJrWWYOxTA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 09 Jul 2025 02:34:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/ExampleMudWebApp/favicon.ico">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8kNQh\u002BLErZHx3sMz237BHWFasAGQ88EWakJrWWYOxTA="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"15086"},{"Name":"Content-Type","Value":"image/x-icon"},{"Name":"ETag","Value":"\u00228kNQh\u002BLErZHx3sMz237BHWFasAGQ88EWakJrWWYOxTA=\u0022"},{"Name":"Last-Modified","Value":"Wed, 09 Jul 2025 02:34:06 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

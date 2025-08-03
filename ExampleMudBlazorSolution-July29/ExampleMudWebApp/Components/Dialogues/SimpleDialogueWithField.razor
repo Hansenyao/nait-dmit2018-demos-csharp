@@ -1,0 +1,15 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudText Typo="Typo.h6">Enter Feedback</MudText>
+        <MudTextField @bind-Value="feedbackMessage" Label="Feedback" FullWidth=true />
+    </DialogContent>
+
+    <DialogActions>
+        <MudButton Color="@Color" OnClick="Submit">
+            @ButtonText
+        </MudButton>
+        <MudButton Color="Color.Secondary" OnClick="Cancel">
+            Cancel
+        </MudButton>
+    </DialogActions>
+</MudDialog>

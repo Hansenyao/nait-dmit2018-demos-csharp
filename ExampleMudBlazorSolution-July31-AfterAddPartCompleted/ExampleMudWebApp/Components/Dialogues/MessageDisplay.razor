@@ -1,0 +1,25 @@
+﻿@if(hasFeedback)
+{
+    <MudAlert Severity="Severity.Success" Elevation="0" Dense="true">
+        @FeedbackMessage
+    </MudAlert>
+}
+
+@if(hasSingleError)
+{
+    <MudAlert Severity="Severity.Error" Elevation="0" Dense="true">
+        @ErrorMessage
+    </MudAlert>
+}
+
+@if(hasMultipleErrors)
+{
+    <MudAlert Severity="Severity.Error" Elevation="0" Dense="true">
+        <ul>
+            @foreach(var error in ErrorMessages)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </MudAlert>
+}

@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\SHANEK\\source\\repos\\ExampleMudBlazorSolution\\ExampleMudWebApp\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\ExampleMudWebApp.bundle.scp.css",
+      "PackagePath": "staticwebassets\\ExampleMudWebApp.9hzdi0ttxs.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\SHANEK\\source\\repos\\ExampleMudBlazorSolution\\ExampleMudWebApp\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ExampleMudWebApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.ExampleMudWebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.ExampleMudWebApp.props",
+      "PackagePath": "build\\ExampleMudWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.ExampleMudWebApp.props",
+      "PackagePath": "buildMultiTargeting\\ExampleMudWebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.ExampleMudWebApp.props",
+      "PackagePath": "buildTransitive\\ExampleMudWebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

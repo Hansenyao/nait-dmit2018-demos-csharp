@@ -1,0 +1,30 @@
+﻿@page "/SamplePages/CustomerSearch"
+
+<PageTitle>Customer Search</PageTitle>
+
+<MudText Typo="Typo.h3">Customer Search</MudText>
+
+@if(hasError)
+{
+    <MudAlert Elevation="2" Severity="Severity.Error" Dense=true>
+        <MudText Typo="Typo.h4">@errorMessage</MudText>
+        @foreach(var error in errorDetails)
+        {
+            <MudText Typo="Typo.h5">@error</MudText>
+        }
+    </MudAlert>
+}
+
+@if(hasFeedback)
+{
+    <MudAlert Elevation="2" Severity="Severity.Info" Dense=true>
+        <MudText Typo="Typo.h4">@feedbackMessage</MudText>
+    </MudAlert>
+}
+
+<MudStack Row="true" Spacing="4" AlignItems="AlignItems.Center">
+
+    <MudText Typo="Typo.h5">Search</MudText>
+   
+
+</MudStack>

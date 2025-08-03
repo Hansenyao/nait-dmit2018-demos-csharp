@@ -1,0 +1,30 @@
+﻿@page "/SamplePages/WorkingVersions"
+
+<PageTitle>Working Versions</PageTitle>
+
+<MudText Typo="Typo.h3">Current Working Version Info</MudText>
+
+<MudButton OnClick="GetWorkingVersion" Variant="Variant.Filled" Color="Color.Primary">
+    Get Working Version
+</MudButton>
+
+@if(workingVersionsView?.VersionId > 0)
+{
+    <MudText Typo="Typo.h5"><strong>Version ID: </strong>@workingVersionsView.VersionId</MudText>
+    <MudText Typo="Typo.h5"><strong>Major: </strong>@workingVersionsView.Major</MudText>
+    <MudText Typo="Typo.h5"><strong>Minor: </strong>@workingVersionsView.Minor</MudText>
+    <MudText Typo="Typo.h5"><strong>Build: </strong>@workingVersionsView.Build</MudText>
+    <MudText Typo="Typo.h5"><strong>Revision: </strong>@workingVersionsView.Revision</MudText>
+    <MudText Typo="Typo.h5"><strong>Date: </strong>@workingVersionsView.AsOfDate</MudText>
+    <MudText Typo="Typo.h5"><strong>Comments: </strong>@workingVersionsView.Comments</MudText>
+}
+
+@if(!string.IsNullOrWhiteSpace(feedback))
+{
+    <div class="mt-4">
+        <MudAlert Severity="Severity.Error">
+            <MudText Typo="Typo.h4">@feedback</MudText>
+        </MudAlert>
+    </div>
+}
+
