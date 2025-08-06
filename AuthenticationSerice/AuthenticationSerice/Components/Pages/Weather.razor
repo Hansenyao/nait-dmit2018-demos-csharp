@@ -1,39 +1,53 @@
 ﻿@page "/weather"
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather</h1>
-
-<p>This component demonstrates showing data.</p>
-
-@if (forecasts == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th aria-label="Temperature in Celsius">Temp. (C)</th>
-                <th aria-label="Temperature in Farenheit">Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+<AuthorizeView Roles="Admin, Manager">
+    <NotAuthorized>
+        <!-- Content for users not in the Admin/Manager role -->
+        <p>You do not have access to this content. Please contact an admin for assistance.</p>
+    </NotAuthorized>
+    <Authorized>
+        <p>This component demonstrates showing data.</p>
+        @if (forecasts == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th aria-label="Temperature in Celsius">Temp. (C)</th>
+                        <th aria-label="Temperature in Farenheit">Temp. (F)</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var forecast in forecasts)
+                    {
+                        <tr>
+                            <td>@forecast.Date.ToShortDateString()</td>
+                            <td>@forecast.TemperatureC</td>
+                            <td>@forecast.TemperatureF</td>
+                            <td>@forecast.Summary</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        @if (AuthenticationStateProvider.GetAuthenticationStateAsync()
+            .Result.User.Identity.IsAuthenticated &&
+            AuthenticationStateProvider.GetAuthenticationStateAsync()
+           .Result.User.IsInRole("Admin"))
+        {
+            <button onclick="@RefreshWeather">Refresh</button>
+        }
+    </Authorized>
+</AuthorizeView>
 
 @code {
     private WeatherForecast[]? forecasts;
@@ -42,7 +56,11 @@ else
     {
         // Simulate asynchronous loading to demonstrate a loading indicator
         await Task.Delay(500);
+        RefreshWeather();
+    }
 
+    public void RefreshWeather()
+    {
         var startDate = DateOnly.FromDateTime(DateTime.Now);
         var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
         forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
