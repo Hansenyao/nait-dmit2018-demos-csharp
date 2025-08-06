@@ -1,9 +1,17 @@
 ﻿@page "/weather"
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@using System.Security.Claims
 
 <PageTitle>Weather</PageTitle>
 
 <h1>Weather</h1>
+
+<!--Current User Information-->
+<p>UserID: @userId</p>
+<p>User Name: @userName</p>
+<p>User Email: @email</p>
+<p>User Role(s): @(roles.Any() ? string.Join(", ", roles) : "None")</p>
+
 <AuthorizeView Roles="Admin, Manager">
     <NotAuthorized>
         <!-- Content for users not in the Admin/Manager role -->
@@ -52,10 +60,30 @@
 @code {
     private WeatherForecast[]? forecasts;
 
+    // Current user information
+    private string? userId;
+    private string? userName;
+    private string? email;
+    private List<string> roles = new();
+
     protected override async Task OnInitializedAsync()
     {
         // Simulate asynchronous loading to demonstrate a loading indicator
         await Task.Delay(500);
+
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            userId = user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            userName = user.Identity.Name;
+
+            email = user.FindFirst(ClaimTypes.Email)?.Value;
+
+            roles = user.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
+        }
+
         RefreshWeather();
     }
 
